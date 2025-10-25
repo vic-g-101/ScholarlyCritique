@@ -1,0 +1,44 @@
+.faq-container {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-color);
+}
+
+/* center the FAQ heading */
+.faq-main {
+  padding: 3rem 2rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.faq-title {
+  font-family: var(--heading-font);
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+/* two-column layout */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem 5rem;
+}
+
+/* each Q&A block */
+.faq-item h4 {
+  font-family: var(--heading-font);
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+   font-weight: bold;
+}
+
+.faq-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  
+}
+

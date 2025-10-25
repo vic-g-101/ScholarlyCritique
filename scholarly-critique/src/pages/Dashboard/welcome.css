@@ -1,0 +1,168 @@
+:root {
+  --primary-color: #874f3e;
+  --background: #ddd1c7;
+  --text-color: #874f3e;
+  --heading-font: 'Raleway', sans-serif;
+  --body-font: 'Quicksand', sans-serif;
+}
+
+/* Reset & Body */
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  background: var(--background);
+  color: var(--text-color);
+}
+
+/* Header */
+.welcome-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--background);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+}
+
+.logo-text {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  font-family: var(--heading-font);
+  font-size: 0.95rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+.auth-buttons .btn {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: var(--heading-font);
+}
+
+.auth-buttons .btn:hover {
+  background: #6c3e30;
+}
+
+/* Hero */
+.hero-section {
+  margin: 0;
+  padding: 4rem 2rem;
+  background: var(--background);
+  text-align: center;
+}
+
+.hero-content h2 {
+  font-family: var(--heading-font);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.hero-content p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.5;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-bottom: 3rem;
+  padding: 0.75rem 2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  background: #6c3e30;
+}
+
+/* How It Works Icons */
+.howitworks-heading {
+  font-family: var(--heading-font);
+  font-size: 1.75rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-align:center;
+}
+
+.howitworks-icons {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.howitworks-item {
+   position: relative;
+  width: 200px;          
+  display: flex;      
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.howitworks-icon {
+  font-size: 5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  
+}
+
+.howitworks-item p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.howitworks-item:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -3.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+/* Content Sections */
+.origin-section {
+  padding: 3rem 2rem;
+  background: var(--background);
+}
+
+.origin-section h3 {
+  font-family: var(--heading-font);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}

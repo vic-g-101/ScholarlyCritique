@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@200..700&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+:root {
+  --font-display: "Arsenal SC", sans-serif;
+  --breakpoint-3xl: 1920px;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-display);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F5F5F5;
+    overflow-x: hidden;
+    margin:0;
+    padding: 0;
+  }
+}
+
+.input-box{
+  @apply w-full flex justify-between gap-3 text-sm text-black bg-slate-100 rounded px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none; 
+}
+
+.btn-primary {
+  @apply bg-[var(--primary-color)] text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-[#6c3e30] transition-all;
+}
+
+.tiptap-content s {
+  color: #dc2626;
+  text-decoration-color: #dc2626;
+  text-decoration-thickness: 2px;
+}
