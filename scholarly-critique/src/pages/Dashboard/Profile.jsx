@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext} from 'react';
 import DashboardLayout from '../../components/layouts/DashboardLayout';
 import axiosInstance from "../../utils/axiosinstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import { UserContext } from "../../context/userContext";
+import { UserContext } from "../../context/UserContext";
 import CharAvatar from "../../components/Cards/CharAvatar";
 import { AiFillStar } from "react-icons/ai";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";

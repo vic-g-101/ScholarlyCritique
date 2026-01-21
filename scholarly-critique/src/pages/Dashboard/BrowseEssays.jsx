@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import axiosInstance from "../../utils/axiosinstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import { UserContext } from "../../context/userContext";
+import { UserContext } from "../../context/UserContext";
 import CharAvatar from "../../components/Cards/CharAvatar";
 import { LuChevronDown, LuChevronLeft, LuChevronRight, LuBookText } from "react-icons/lu";
 import { AiFillStar } from "react-icons/ai";

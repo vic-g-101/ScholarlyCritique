@@ -4,7 +4,7 @@ import logo from "../../assets/images/FinalScholarlyCritiqueLogo.png";
 import "./signup.css";
 import axiosInstance from "../../utils/axiosinstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import { UserContext } from "../../context/userContext";
+import { UserContext } from "../../context/UserContext";
 
 export default function SignUp_8() {
   const navigate = useNavigate();
