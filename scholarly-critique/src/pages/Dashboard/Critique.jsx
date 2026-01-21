@@ -36,6 +36,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 // Small pill styles
+// Add a second pill style one for just the inline edits (smaller)
 const pill = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium";
 
 // Theme helpers
@@ -47,6 +48,7 @@ const textMuted = "text-[#6f5145]";
 
 
 // Simple toolbar for Tiptap
+//Is a general comment necessary and if so then should I still allow for bolding and italicised
 function EditorToolbar({ editor }) {
   if (!editor) return null;
   return (
@@ -99,7 +101,7 @@ export default function Critique() {
       })
     : null;
 
-      // Editor for the ESSAY BODY itself (the thing we want to annotate)
+  // Editor for the eSSAY BODY itself (thing we want to annotate)
   const docEditor = useEditor
     ? useEditor({
         extensions: [StarterKit, HighlightMark],
@@ -117,7 +119,7 @@ export default function Critique() {
   // Inline edits array: { selection, suggestion, note }
   const [inlineEdits, setInlineEdits] = useState([]);
 
-  // File (optional annotated PDF/doc)
+  // File 
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null);
   const cardRef = useRef(null);
@@ -130,21 +132,25 @@ export default function Critique() {
 
   const generalComment = useMemo(
     () => (editor ? editor.getHTML() : fallbackComment),
-    // We read only on submit; here we just expose a getter
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Read only on submit,  expose a getter
     [editor?.state, fallbackComment]
   );
 
+  // Allow saving for inline edits on html file
   useEffect(() => {
   const raw = localStorage.getItem(DRAFT_KEY(essayId));
   if (!raw) return;
   try {
     const draft = JSON.parse(raw);
+
     if (editor && draft.generalCommentHtml) {
       editor.commands.setContent(draft.generalCommentHtml);
     }
+
     if (typeof draft.fallbackComment === "string") setFallbackComment(draft.fallbackComment);
+
     if (Array.isArray(draft.inlineEdits)) setInlineEdits(draft.inlineEdits);
+
   } catch {}
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [essayId, editor]);

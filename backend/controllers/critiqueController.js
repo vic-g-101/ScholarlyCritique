@@ -24,7 +24,7 @@ function hasSubstantiveFeedback({ generalComment, inlineEdits, file }) {
  * Rules:
  *  - must not critique own essay
  *  - must include at least one edit or comment (or file)
- *  - only one critique per reviewer per essay
+ *  - only one critique per reviewer per essay(change later)
  */
 exports.submitCritique = async (req, res) => {
   try {
@@ -79,14 +79,13 @@ exports.submitCritique = async (req, res) => {
     // Email notify the author (best-effort; don't block the response on failures)
     try {
       const author = await User.findById(essay.author).select("firstName lastName email notifications");
-      // optional preference flag: author.notifications?.emailOnCritique !== false
       const canEmail = author?.email;
       if (canEmail) {
         await sendEssayCritiquedEmail({
           to: author.email,
           authorName: [author.firstName, author.lastName].filter(Boolean).join(" "),
           essayId: essay._id.toString(),
-          essayTitle: essay.topic, // or add a title field if you store it
+          essayTitle: essay.title,
         });
       }
     } catch (mailErr) {

@@ -1,32 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
-import SideMenu from "./SideMenu";
 import logo from "../../assets/images/FinalScholarlyCritiqueLogo.png";
 
-const Navbar = ({ activeMenu }) => {
-  const [openSideMenu, setOpenSideMenu] = useState(false);
-
+const Navbar = ({ activeMenu, isCollapsed, setIsCollapsed }) => {
   return (
     <div className="flex items-center gap-5 bg-white border border-b border-gray-200/50 backdrop-blur-[2px] py-3 px-6 sticky top-0 z-30">
+      {/* Collapse toggle button (always visible) */}
       <button
-        className="block lg:hidden text-black"
-        onClick={() => setOpenSideMenu(!openSideMenu)}
-        aria-label="Toggle menu"
+        className="text-black mr-2 flex items-center justify-center w-9 h-9 rounded-md border border-gray-300 hover:bg-gray-100 transition"
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        aria-label="Toggle sidebar"
       >
-        {openSideMenu ? <HiOutlineX className="text-2xl" /> : <HiOutlineMenu className="text-2xl" />}
+        {isCollapsed ? (
+          <HiOutlineMenu className="text-2xl" />
+        ) : (
+          <HiOutlineX className="text-2xl" />
+        )}
       </button>
 
       {/* Brand */}
       <div className="flex items-center gap-2">
         <img src={logo} alt="ScholarlyCritique" className="h-8 w-auto" />
-        <span className="text-lg font-medium text-[#5a3a2f]" style={{ fontFamily: "Playfair Display", color: 'var(--primary-color)' }}>ScholarlyCritique</span>
+        <span
+          className="text-lg font-medium text-[#5a3a2f]"
+          style={{ fontFamily: "Playfair Display", color: "var(--primary-color)" }}
+        >
+          ScholarlyCritique
+        </span>
       </div>
-
-      {openSideMenu && (
-        <div className="fixed top-[61px] -ml-4 bg-white shadow-lg">
-          <SideMenu activeMenu={activeMenu} />
-        </div>
-      )}
     </div>
   );
 };

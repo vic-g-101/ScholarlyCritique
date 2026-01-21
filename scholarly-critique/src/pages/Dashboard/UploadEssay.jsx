@@ -5,12 +5,14 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { postForm } from "../../utils/axiosinstance";
 
 const SUBJECTS = [
-  "Humanities",
-  "Social Sciences",
-  "STEM",
-  "Business",
-  "Law",
-  "Arts",
+  { key: "humanities", label: "Humanities" },
+  { key: "social_sciences", label: "Social Sciences" },
+  { key: "argumentative_rhetorical", label: "Argumentative & Rhetorical Essays" },
+  { key: "media_writing", label: "Media Writing" },
+  { key: "creative_writing", label: "Creative Writing" },
+  { key: "business_law", label: "Business & Law" },
+  { key: "stem", label: "STEM" },
+  { key: "interdisciplinary", label: "Interdisciplinary" },
 ];
 
 const EDIT_PREFERENCES = [
@@ -25,7 +27,7 @@ export default function UploadEssay() {
 
   // form state
   const [title, setTitle] = useState("");
-  const [topic, setTopic] = useState(SUBJECTS[0]);
+  const [topic, setTopic] = useState(SUBJECTS[0].key);
   const [summary, setSummary] = useState("");
   const [editPreference, setEditPreference] = useState("mix");
   const [file, setFile] = useState(null);
@@ -159,8 +161,8 @@ export default function UploadEssay() {
               className="w-full mb-4 rounded-md border border-[#e6d6cd] px-3 py-2 outline-none focus:ring-2 focus:ring-[#a27b6a] bg-white"
             >
               {SUBJECTS.map((s) => (
-                <option key={s} value={s}>
-                  {s}
+                <option key={s.key} value={s.key}>
+                  {s.label}
                 </option>
               ))}
             </select>

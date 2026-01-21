@@ -5,8 +5,8 @@ const {
   SMTP_PORT,
   SMTP_USER,
   SMTP_PASS,
-  SMTP_FROM = "no-reply@scholarlycritique.com",
-  CLIENT_BASE_URL = "http://localhost:5173", // your frontend base URL
+  SMTP_FROM = "scholarlycritique@gmail.com",
+  CLIENT_BASE_URL = "http://localhost:5173", //frontend base URL
 } = process.env;
 
 const transporter = nodemailer.createTransport({

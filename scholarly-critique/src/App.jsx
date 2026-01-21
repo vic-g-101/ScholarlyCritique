@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import UserProvider, { useUser } from "./context/userContext";
-
+import { LayoutProvider, LayoutContext } from "./context/layoutContext";
 
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
@@ -65,7 +65,9 @@ const PublicRoute = () => {
 };
 
 const App = () => (
+  
   <UserProvider>
+    <LayoutProvider>
     <Router>
       <Routes>
         {/* Public */}
@@ -106,7 +108,9 @@ const App = () => (
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
+    </LayoutProvider>
   </UserProvider>
+  
 );
 
 export default App;

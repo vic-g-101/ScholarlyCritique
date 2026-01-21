@@ -10,7 +10,7 @@ import { AiFillStar } from "react-icons/ai";
 import { useSearchParams } from "react-router-dom";
 
 const TOPICS = [
-  { key: "all", label: "Topics" },
+  { key: "all", label: "All" },
   { key: "humanities", label: "Humanities" },
   { key: "social_sciences", label: "Social Sciences" },
   { key: "argumentative_rhetorical", label: "Argumentative & Rhetorical Essays" },
