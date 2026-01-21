@@ -5,7 +5,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/UserContext";
 import CharAvatar from "../../components/Cards/CharAvatar";
 import { AiFillStar } from "react-icons/ai";
-import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
+import ProfilePhotoSelector from "../../components/inputs/ProfilePhotoSelector";
 import uploadImage from "../../utils/uploadImage";
 
 const StarRow = ({ value = 0, size = 18 }) => {
