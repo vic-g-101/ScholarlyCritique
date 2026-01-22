@@ -15,22 +15,21 @@ const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  process.env.CLIENT_BASE_URL,
+];
+
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow non-browser requests (Postman, server-to-server, Render health checks)
       if (!origin) return callback(null, true);
-
-      const allowedOrigins = [
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        process.env.CLIENT_BASE_URL, // Vercel deployed URL
-      ];
 
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        console.error("Blocked by CORS:", origin);
+        console.error("CORS blocked:", origin);
         callback(new Error("Not allowed by CORS"));
       }
     },
@@ -39,6 +38,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.options("*", cors());
 
 app.use(express.json());
 
