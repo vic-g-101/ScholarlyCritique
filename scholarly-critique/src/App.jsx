@@ -30,7 +30,9 @@ import EssayView from "./pages/Dashboard/EssayView";
 
 const PrivateRoute = () => {
    const { isAuthenticated, user } = useUser();
-   if (isAuthenticated && user === null) return null;
+   if (isAuthenticated && user === null) {
+    return <div>Loading...</div>;
+  }
    if (!isAuthenticated) return <Navigate to="/login" replace />;
 
    const onboarding = user?.onboarding || {};
