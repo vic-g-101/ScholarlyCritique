@@ -23,7 +23,7 @@ router.post("/upload-image", upload.single("image"), (req, res) => {
   }
 
   const baseUrl =
-    process.env.API_BASE_URL ||
+    process.env.BACKEND_BASE_URL ||
     `${req.protocol}://${req.get("host")}`;
 
   const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
