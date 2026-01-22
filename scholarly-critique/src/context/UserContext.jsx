@@ -20,6 +20,7 @@ const UserProvider = ({ children }) => {
   });
   const [token, setToken] = useState(() => localStorage.getItem("token"));
   const [loading, setLoading] = useState(true);
+  const isAuthenticated = Boolean(token);
 
   // If we have a token but no user, fetch the current user once
   useEffect(() => {
@@ -84,8 +85,16 @@ const UserProvider = ({ children }) => {
     });
   }, []);
 
-  const value = useMemo(
-    () => ({ user, token, isAuthenticated, login, logout, updateUser }),
+ const value = useMemo(
+    () => ({
+      user,
+      token,
+      isAuthenticated,
+      loading,
+      login,
+      logout,
+      updateUser,
+    }),
     [user, token, isAuthenticated, loading, login, logout, updateUser]
   );
 
