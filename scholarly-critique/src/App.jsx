@@ -29,11 +29,18 @@ import EssayView from "./pages/Dashboard/EssayView";
 
 
 const PrivateRoute = () => {
-   const { isAuthenticated, user } = useUser();
-   if (isAuthenticated && user === null) {
-    return <div>Loading...</div>;
+   const { isAuthenticated, user, loading } = useUser();
+   if (loading) {
+    return (
+      <div style={{ padding: "2rem", textAlign: "center" }}>
+        Loading…
+      </div>
+    );
   }
-   if (!isAuthenticated) return <Navigate to="/login" replace />;
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
 
    const onboarding = user?.onboarding || {};
    const completed = Boolean(onboarding.completed);

@@ -19,7 +19,7 @@ const UserProvider = ({ children }) => {
     return raw ? JSON.parse(raw) : null;
   });
   const [token, setToken] = useState(() => localStorage.getItem("token"));
-  const isAuthenticated = !!token;
+  const [loading, setLoading] = useState(true);
 
   // If we have a token but no user, fetch the current user once
   useEffect(() => {
@@ -37,6 +37,7 @@ const UserProvider = ({ children }) => {
           logout();
         }
       }
+      if (!cancelled) setLoading(false);
     })();
     return () => {
       cancelled = true;
@@ -85,7 +86,7 @@ const UserProvider = ({ children }) => {
 
   const value = useMemo(
     () => ({ user, token, isAuthenticated, login, logout, updateUser }),
-    [user, token, isAuthenticated, login, logout, updateUser]
+    [user, token, isAuthenticated, loading, login, logout, updateUser]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
