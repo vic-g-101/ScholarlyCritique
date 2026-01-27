@@ -72,7 +72,10 @@ exports.rateCritique = async (req, res) => {
       let award = { creditsAwarded: 0 };
       if (!critique.rated) {
         const words = critique.essay.wordCount || 0;
-        const units = awardUnitsForCritique(words, value); // full if >=3, half (floored) if <3
+        let units = awardUnitsForCritique(words);
+
+        const BONUS_BY_STAR = { 3: 3, 4: 4, 5: 5 };
+        units += BONUS_BY_STAR[value] || 0;
 
         if (units > 0) {
           await applyCreditTransaction({

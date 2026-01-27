@@ -85,6 +85,17 @@ const UserProvider = ({ children }) => {
     });
   }, []);
 
+  const refreshCredits = useCallback(async () => {
+  try {
+    const { data } = await axiosInstance.get("/api/v1/credits/me");
+    if (data?.credits !== undefined) {
+      updateUser((prev) => ({ ...prev, credits: data.credits }));
+    }
+  } catch {
+    // silent fail
+  }
+}, [updateUser]);
+
  const value = useMemo(
     () => ({
       user,
@@ -94,8 +105,9 @@ const UserProvider = ({ children }) => {
       login,
       logout,
       updateUser,
+      refreshCredits,
     }),
-    [user, token, isAuthenticated, loading, login, logout, updateUser]
+    [user, token, isAuthenticated, loading, login, logout, updateUser, refreshCredits]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

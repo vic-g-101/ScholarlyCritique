@@ -5,6 +5,7 @@ import axiosInstance, { postForm } from "../../utils/axiosinstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { Mark } from "@tiptap/core";
 import { FaStickyNote,  FaStrikethrough, FaCopy } from "react-icons/fa";
+import { useUser } from "../../context/UserContext";
 
 const HighlightMark = Mark.create({
   name: "reviewHighlight",
@@ -83,6 +84,7 @@ function EditorToolbar({ editor }) {
 }
 
 export default function Critique() {
+  const { refreshCredits, user } = useUser();
   const { id: essayId } = useParams();
   const navigate = useNavigate();
   const [essay, setEssay] = useState(null);
@@ -341,6 +343,8 @@ useEffect(() => {
       if (file) form.append("document", file);
 
       await postForm(API_PATHS.CRITIQUES.SUBMIT, form);
+
+      await refreshCredits();
      localStorage.removeItem(DRAFT_KEY(essayId));
 
  // Go to the Congrats page with context

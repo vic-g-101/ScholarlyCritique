@@ -23,7 +23,7 @@ function hasSubstantiveFeedback({ generalComment, inlineEdits, file }) {
  *
  * Rules:
  *  - must not critique own essay
- *  - must include at least one edit or comment (or file)
+ *  - must include at least one edit or comment(or file)
  *  - only one critique per reviewer per essay(change later)
  */
 exports.submitCritique = async (req, res) => {
@@ -69,6 +69,23 @@ exports.submitCritique = async (req, res) => {
       inlineEdits,
       fileUrl
     });
+    //Award Base Credits immediately on submission
+    try {
+      const essayWithWords = await Essay.findById(essay._id).select("wordCount");
+      const words = essayWithWords?.wordCount || 0;
+      const units = require("../services/creditSystem").awardUnitsForCritique(words);
+
+    if (units > 0) {
+    await require("../services/creditSystem").applyCreditTransaction({
+      userId: reviewerId,
+      delta: units,
+      type: "award_critique",
+      meta: { essayId: essay._id, words },
+    });
+    }
+  } catch (creditErr) {
+    console.warn("Failed to award submission credits:", creditErr);
+  }
 
     // Denormalize: bump essay.reviewCount, optionally set status to `in_review`
     await Essay.findByIdAndUpdate(essay._id, {

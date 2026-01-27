@@ -9,16 +9,9 @@ function unitsFromWords(words) {
   return Math.max(1, Math.ceil(n / 500));
 }
 
-/** Critique award logic:
- *  - base = unitsFromWords(words)
- *  - if stars >= 3 → full base
- *  - if stars < 3  → floor(base/2)
- */
 
-function awardUnitsForCritique(words, stars) {
-  const base = unitsFromWords(words);
-  if (Number(stars) >= 3) return base;
-  return Math.floor(base / 2);
+function awardUnitsForCritique(words) {
+  return unitsFromWords(words);
 }
 
 // Charge logic: cost = unitsFromWords(words) 
