@@ -135,10 +135,6 @@ exports.getCritiquesForEssay = async (req, res) => {
     const isAuthor = essay.author.toString() === req.user._id.toString();
 
     const query = { essay: essayId };
-    if (!isAuthor) {
-      // not the author → only return the current user's critique for this essay
-      query.reviewer = req.user._id;
-    }
 
     const critiques = await Critique.find(query)
       .populate("reviewer", "firstName lastName profileImageUrl ratingAvg ratingCount")

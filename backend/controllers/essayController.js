@@ -1,6 +1,7 @@
 const path = require("path");
 const Essay = require("../models/Essay");
 const User = require("../models/User");
+const Critique = require("../models/Critique");
 const { parseFileToText, countWords } = require("../services/docParser");
 const { costUnitsForEssay, applyCreditTransaction } = require("../services/creditSystem");
 
@@ -104,11 +105,18 @@ exports.getFeed = async (req, res) => {
   try {
 
     const page = Math.max(parseInt(req.query.page || "1", 10), 1);
-const pageSize = Math.min(Math.max(parseInt(req.query.pageSize || "10", 10), 1), 50);
+    const pageSize = Math.min(Math.max(parseInt(req.query.pageSize || "10", 10), 1), 50);
     const excludeMine = req.query.excludeMine === "true";
     const topic = req.query.topic;
 
-    const q = { status: "open" };
+    const reviewedIds = await Critique
+  .find({ reviewer: req.user._id })
+  .distinct("essay");
+
+    const q = {
+  status: { $ne: "closed" },
+  _id: { $nin: reviewedIds },
+};
     if (excludeMine) q.author = { $ne: req.user._id };
     if (topic && topic !== "all") q.topic = topic;
 
