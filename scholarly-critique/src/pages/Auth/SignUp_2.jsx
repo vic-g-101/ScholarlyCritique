@@ -7,7 +7,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/UserContext";
 
 export default function SignUp2() {
-  onsole.log("🔥 SignUp2 rendered");
+ console.log("🔥 SignUp2 rendered");
   const navigate = useNavigate();
   const { updateUser } = useContext(UserContext);
 
