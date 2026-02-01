@@ -195,15 +195,40 @@ padding:16px; }
 .subtitle{ font-size:20px; color:var(--sc-ink-soft); margin-bottom:28px; }
 
 
-.options{ display:flex; flex-direction:column; gap:18px; align-items:stretch; max-width:480px; margin:0 auto; }
+.options{ display:flex; flex-direction:column; gap:18px; align-items:stretch; width: min(720px, 100%); margin:0 auto; }
 
 
 /* Option pills */
 .status-option{
-appearance:none; border:none; cursor:pointer; font-size:22px; font-weight:600; padding:18px 22px;
-border-radius:16px; background:var(--background); color:var(--primary-color);
-box-shadow: inset 0 0 0 2px var(--primary-color);  transition:background .15s ease, transform .05s ease, background .15s ease, color .15s ease;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  white-space: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  line-height: 1.25;
+
+  min-height: 90px;
+  padding: 16px 18px;
+
+  font-size: 22px;
+  font-weight: 600;
+
+  border-radius: 999px; /* ← TRUE pill */
+  background: var(--background);
+  color: var(--primary-color);
+
+  box-shadow: inset 0 0 0 2px var(--primary-color);
+
+  transition: background .15s ease, transform .05s ease, color .15s ease;
 }
+
 .status-option:hover{ background:var(--primary-color) ; color: #fff;}
 .status-option:active{  background:#5b3227; transform:none; }
 .status-option.is-selected{ background:var(--primary-color-darker); color: #fff; box-shadow: inset 0 0 0 2px var(--sc-focus); }
@@ -262,14 +287,6 @@ background:var(--primary-color); color:#fff; transition: background .15s ease, t
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   width: min(700px, 100%);   /* wider than the old 480px to fit 3 cols */
-}
-
-.status-option{
-  display: flex;             /* center label nicely inside the pill */
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 16px 18px;        /* slightly tighter for grid */
 }
 
 .option-label{
