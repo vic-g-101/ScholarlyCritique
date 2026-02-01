@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/images/FinalScholarlyCritiqueLogo.png";
 import "./signup.css";
 import axiosInstance from "../../utils/axiosinstance";
@@ -17,19 +17,16 @@ export default function SignUp2() {
   const [error, setError] = useState(null);
 
   // Force a reload on SignUp dont know why its not working yet
-  useEffect(() => {
-    const hasReloaded = sessionStorage.getItem("signup2-reloaded");
+const location = useLocation();
 
-    if (!hasReloaded) {
-      sessionStorage.setItem("signup2-reloaded", "true");
-      window.location.reload();
-    }
+useEffect(() => {
+  const key = `signup2-reloaded-${location.key}`;
 
-    return () => {
-      sessionStorage.removeItem("signup2-reloaded");
-    };
-  }, []);
-
+  if (!sessionStorage.getItem(key)) {
+    sessionStorage.setItem(key, "true");
+    window.location.reload();
+  }
+}, [location.key]);
   const OPTIONS = [
     { key: "undergraduate", label: "Undergraduate" },
     { key: "graduate", label: "Graduate" },

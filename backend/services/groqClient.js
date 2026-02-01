@@ -20,7 +20,7 @@ async function groqChatJSON({ system, user, model = process.env.LLM_MODEL || "ll
   try {
     return JSON.parse(content);
   } catch (e) {
-    // Attempt to salvage JSON if the model wrapped it in code fences
+    // Attempt to salvage JSON if the model wrapped it
     const m = content.match(/\{[\s\S]*\}$/);
     if (m) {
       return JSON.parse(m[0]);
