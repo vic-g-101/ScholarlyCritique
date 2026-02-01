@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
 import UserProvider, { useUser } from "./context/UserContext"
 import { LayoutProvider, LayoutContext } from "./context/layoutContext";
 
@@ -59,7 +59,8 @@ const PrivateRoute = () => {
      }[step] || "/signup2";
 
    // If not completed and not already on the required step, push them there
-   const current = window.location.pathname;
+  const location = useLocation();
+  const current = location.pathname;
    if (!completed && current !== stepPath) {
     return <Navigate to={stepPath} replace />;
    }
