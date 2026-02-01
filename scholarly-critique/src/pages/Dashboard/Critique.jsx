@@ -610,20 +610,6 @@ useEffect(() => {
               >
                 {submitting ? "Submitting…" : "Submit Critique"}
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                    const payload = {
-                    generalCommentHtml: editor ? editor.getHTML() : undefined,
-                    fallbackComment,
-                    inlineEdits,
-                    };
-                    localStorage.setItem(DRAFT_KEY(essayId), JSON.stringify(payload));
-                }}
-                className="mr-2 inline-flex items-center justify-center rounded-md px-4 py-2 border border-[#ead7cd] text-[#5a3a2f] bg-white hover:bg-[#f8f3f0]"
-                >
-                Save Draft
-                </button>
             </div>
           </form>
 

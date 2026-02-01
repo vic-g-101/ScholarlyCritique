@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/FinalScholarlyCritiqueLogo.png";
 import "./signup.css";
@@ -15,6 +15,20 @@ export default function SignUp2() {
   );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
+
+  // Force a reload on SignUp dont know why its not working yet
+  useEffect(() => {
+    const hasReloaded = sessionStorage.getItem("signup2-reloaded");
+
+    if (!hasReloaded) {
+      sessionStorage.setItem("signup2-reloaded", "true");
+      window.location.reload();
+    }
+
+    return () => {
+      sessionStorage.removeItem("signup2-reloaded");
+    };
+  }, []);
 
   const OPTIONS = [
     { key: "undergraduate", label: "Undergraduate" },
